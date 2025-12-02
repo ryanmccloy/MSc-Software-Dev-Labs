@@ -17,7 +17,7 @@ import java.util.Scanner;
 /**
  * 
  */
-public class JouneyPlanner {
+public class JourneyPlanner {
 
 	public static List<BusRoute> busRoutes = new ArrayList<BusRoute>();
 
@@ -39,7 +39,6 @@ public class JouneyPlanner {
 		// show menu
 		drawMenu();
 
-		
 		System.out.println();
 		System.out.println("Joureny Planner app close ");
 	}
@@ -140,6 +139,8 @@ public class JouneyPlanner {
 			System.out.println("Route menu");
 			System.out.println("1. Show all routes");
 			System.out.println("2. Search for destination");
+			System.out.println("3. Delete a route");
+			System.out.println("4. Print all destinations");
 			System.out.println("0. Quit");
 			System.out.println();
 			System.out.print("Enter choice: ");
@@ -174,6 +175,21 @@ public class JouneyPlanner {
 				}
 
 				break;
+			case 3:
+				System.out.println("Please enter the ID");
+				// delete
+				while (!sc.hasNextInt()) {
+					System.out.println("Please enter a number:");
+					sc.next(); // discard invalid input
+				}
+				int routeID = sc.nextInt();
+				deleteBusRoute(routeID);
+				break;
+			case 4:
+				// in a new thread
+				Thread t = new Thread(new PrintDestinationsThread());
+				t.start();
+				break;
 			case 0:
 				System.out.println("Goodbye!");
 				;
@@ -186,6 +202,25 @@ public class JouneyPlanner {
 		} while (choice != 0);
 
 		sc.close();
+
+	}
+
+	/**
+	 * deletes a bus route from given ID
+	 * 
+	 * @param routeID
+	 */
+	public static void deleteBusRoute(int routeID) {
+		Iterator<BusRoute> it = busRoutes.iterator();
+
+		while (it.hasNext()) {
+
+			if (it.next().getRouteId() == routeID) {
+				it.remove();
+				System.out.println();
+				System.out.println("Bus route " + routeID + " has been removed");
+			}
+		}
 
 	}
 
