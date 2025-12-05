@@ -19,7 +19,7 @@ public class PrintSongsThread implements Runnable {
 		
 	}
 
-	/**
+	/** 
 	 * prints songs to new file
 	 */
 	private void printSongs() {

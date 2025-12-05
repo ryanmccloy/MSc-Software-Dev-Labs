@@ -30,7 +30,7 @@ public class SongStats {
 
 	/**
 	 * start point of application
-	 * 
+	 *  
 	 * @param args
 	 */
 	public static void main(String[] args) {
@@ -123,6 +123,12 @@ public class SongStats {
 		int choice;
 
 		do {
+			
+			try {
+				Thread.sleep(2000); // small delay to allow to display user selected information
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 
 			System.out.println(GREEN_TEXT);
 			System.out.println("1. Display all songs");
@@ -159,7 +165,7 @@ public class SongStats {
 				artist = sc.nextLine();
 				System.out.println();
 
-				List<Song> resultsArtist = searchByArtist(artist);
+				List<Song> resultsArtist = Utilities.searchByArtist(artist, songs);
 
 				if (resultsArtist.size() != 0) {
 					System.out.println(BOLD_TEXT + "ALL " + artist.toUpperCase() + " SONG DETAILS" + RESET_TEXT);
@@ -173,12 +179,12 @@ public class SongStats {
 				break;
 			case 3:
 				String title;
-
+ 
 				System.out.println("Please enter the title you want to search for:");
 				title = sc.nextLine();
 				System.out.println();
 
-				List<Song> resultsTitle = searchByTitle(title);
+				List<Song> resultsTitle = Utilities.searchByTitle(title, songs);
 
 				if (resultsTitle.size() != 0) {
 					System.out.println(BOLD_TEXT + "ALL " + title.toUpperCase() + " SONG DETAILS" + RESET_TEXT);
@@ -222,42 +228,6 @@ public class SongStats {
 
 	}
 
-	/**
-	 * method searches all songs and returns an ArrayList containing songs from a
-	 * given artist
-	 * 
-	 * @param artist
-	 * @return
-	 */
-	private static List<Song> searchByArtist(String artist) {
-		List<Song> results = new ArrayList<Song>();
 
-		for (Song song : songs) {
-			if (song.getArtist().equalsIgnoreCase(artist)) {
-				results.add(song);
-			}
-		}
-
-		return results;
-	}
-	
-	/**
-	 * method searches all songs and returns an ArrayList containing songs from a
-	 * given title
-	 * 
-	 * @param title
-	 * @return
-	 */
-	private static List<Song> searchByTitle(String title) {
-		List<Song> results = new ArrayList<Song>();
-
-		for (Song song : songs) {
-			if (song.getTitle().equalsIgnoreCase(title)) {
-				results.add(song);
-			}
-		}
-
-		return results;
-	}
 
 }
