@@ -35,7 +35,7 @@ class UtilitiesTest {
 		p4 = new Programme("Severance", Broadcaster.APPLE_TV, 10, 15);
 		p5 = new Programme("The Gorge", Broadcaster.AMAZON_PRIME, 1, 2);
 
-		shows.add(p1);
+		shows.add(p1); 
 		shows.add(p2);
 		shows.add(p3); 
 		shows.add(p4);
