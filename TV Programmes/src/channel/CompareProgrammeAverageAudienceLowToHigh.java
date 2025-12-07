@@ -15,3 +15,4 @@ public class CompareProgrammeAverageAudienceLowToHigh implements Comparator<Prog
 		return Double.compare(o1.getAverageAudience(), o2.getAverageAudience());
 	}
 }
+ 

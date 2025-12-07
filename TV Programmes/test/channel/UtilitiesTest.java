@@ -37,9 +37,9 @@ class UtilitiesTest {
 
 		shows.add(p1);
 		shows.add(p2);
-		shows.add(p3);
+		shows.add(p3); 
 		shows.add(p4);
-		shows.add(p5);
+		shows.add(p5); 
 
 	}
 

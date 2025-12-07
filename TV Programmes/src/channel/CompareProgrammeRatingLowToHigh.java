@@ -2,6 +2,9 @@ package channel;
 
 import java.util.Comparator;
 
+/**
+ * method compares the programme ratings from low to high
+ */
 public class CompareProgrammeRatingLowToHigh implements Comparator<Programme> {
 
 	@Override
