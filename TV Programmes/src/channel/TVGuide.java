@@ -152,13 +152,13 @@ public class TVGuide {
 		int choice;
 
 		do {
-			
+
 			try {
 				Thread.sleep(2000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			
+
 			System.out.println(GREEN_TEXT);
 			System.out.println("1. Display all programmes");
 			System.out.println("2. Search by programme title");
@@ -171,31 +171,160 @@ public class TVGuide {
 			System.out.println("9. Average audience (low to high)");
 			System.out.println("0. Quit");
 			System.out.println(RESET_TEXT);
-			
-			
+
 			while (!sc.hasNextInt()) {
 				System.err.println("Please enter a number:");
 				sc.nextLine(); // clear invalid input
 				System.out.println();
 			}
-			
+
 			choice = sc.nextInt();
-			sc.nextLine();  // clear rest of line
+			sc.nextLine(); // clear rest of line
 			System.out.println();
 
-			
 			switch (choice) {
-			case 1: Utilities.displayAllProgrammes(shows); break;
-			case 2: break;
-			case 3: break;
-			case 4: break;
-			case 5: break;
-			case 6: break;
-			case 7: break;
-			case 8: break;
-			case 9: break;
-			case 0: choice = 0; System.out.println("See you next time!"); break;
-			default: System.err.println("Invalid choice. Please try again...");
+			case 1:
+				Utilities.displayAllProgrammes(shows);
+				break;
+			case 2:
+				System.out.println("Please enter the title you wish to search for:");
+				String title = sc.nextLine();
+				System.out.println();
+				List<Programme> resultsTitle = Utilities.searchProgrammesByTitle(title, shows);
+
+				if (resultsTitle.size() != 0) {
+					System.out.println(
+							TVGuide.BOLD_TEXT + "ALL " + title.toUpperCase() + " DETAILS" + TVGuide.RESET_TEXT);
+					System.out.println();
+
+					for (Programme programme : resultsTitle) {
+						programme.displayAll();
+					}
+				} else {
+					System.err.println("Sorry! No programmes available called '" + title + "'");
+				}
+
+				break;
+
+			case 3:
+				System.out.println("Please enter the broadcaster you wish to search for:");
+				String broadcaster = sc.nextLine();
+				System.out.println();
+				List<Programme> resultsBroadcaster = Utilities.searchProgrammesByBroadcaster(broadcaster, shows);
+
+				if (resultsBroadcaster.size() != 0) {
+					System.out.println(
+							TVGuide.BOLD_TEXT + "ALL PROGRAMMES BY " + broadcaster.toUpperCase() + TVGuide.RESET_TEXT);
+					System.out.println();
+
+					for (Programme programme : resultsBroadcaster) {
+						programme.displayAll();
+					}
+				} else {
+					System.err.println("Sorry! No programmes available by '" + broadcaster + "'");
+				}
+
+				break;
+			case 4:
+				System.out.println("Please enter the rating (0-10) you wish to search for (>=):");
+
+				while (!sc.hasNextInt()) {
+					System.err.println("Please enter a number:");
+					sc.nextLine(); // clear invalid input
+					System.out.println();
+				}
+
+				int ratingUpper = sc.nextInt();
+				sc.nextLine(); // clear line
+				System.out.println();
+
+				List<Programme> resultsRatingUpper = Utilities.searchProgrammesByRatingUpper(ratingUpper, shows);
+
+				if (resultsRatingUpper.size() != 0) {
+					System.out.println(TVGuide.BOLD_TEXT + "ALL PROGRAMMES WITH A RATING GREATER OR EQUAL TO "
+							+ ratingUpper + TVGuide.RESET_TEXT);
+					System.out.println();
+
+					for (Programme programme : resultsRatingUpper) {
+						programme.displayAll();
+					}
+				} else {
+					System.err.println("Sorry! No programmes with a rating of " + ratingUpper + " or higher :(");
+				}
+				break;
+			case 5:
+				System.out.println("Please enter the rating (0-10) you wish to search for (<=):");
+
+				while (!sc.hasNextInt()) {
+					System.err.println("Please enter a number:");
+					sc.nextLine(); // clear invalid input
+					System.out.println();
+				}
+
+				int ratingLower = sc.nextInt();
+				sc.nextLine(); // clear line
+				System.out.println();
+
+				List<Programme> resultsRatingLower = Utilities.searchProgrammesByRatingLower(ratingLower, shows);
+
+				if (resultsRatingLower.size() != 0) {
+					System.out.println(TVGuide.BOLD_TEXT + "ALL PROGRAMMES WITH A RATING LESS THAN OR EQUAL TO "
+							+ ratingLower + TVGuide.RESET_TEXT);
+					System.out.println();
+
+					for (Programme programme : resultsRatingLower) {
+						programme.displayAll();
+					}
+				} else {
+					System.err.println("Sorry! No programmes with a rating of " + ratingLower + " or less :)");
+				}
+				break;
+			case 6:
+				List<Programme> showsRatingHighToLow = Utilities.sortShowsByRatingHighToLow(shows);
+
+				System.out.println(TVGuide.BOLD_TEXT + "RATING - HIGH TO LOW" + TVGuide.RESET_TEXT);
+				System.out.println();
+
+				for (Programme programme : showsRatingHighToLow) {
+					programme.displayAll();
+				}
+				break;
+			case 7:
+				List<Programme> showsRatingLowToHigh = Utilities.sortShowsByRatingLowToHigh(shows);
+
+				System.out.println(TVGuide.BOLD_TEXT + "RATING - LOW TO HIGH" + TVGuide.RESET_TEXT);
+				System.out.println();
+
+				for (Programme programme : showsRatingLowToHigh) {
+					programme.displayAll();
+				}
+				break;
+			case 8: 
+				List<Programme> showsAverageAudienceHighToLow = Utilities.sortShowsByAverageAudienceHighToLow(shows);
+
+				System.out.println(TVGuide.BOLD_TEXT + "AVERAGE AUDIENCE - HIGH TO LOW" + TVGuide.RESET_TEXT);
+				System.out.println();
+
+				for (Programme programme : showsAverageAudienceHighToLow) {
+					programme.displayAll();
+				}
+				break;
+			case 9: 
+				List<Programme> showsAverageAudienceLowToHigh = Utilities.sortShowsByAverageAudienceLowToHigh(shows);
+
+				System.out.println(TVGuide.BOLD_TEXT + "AVERAGE AUDIENCE - LOW TO HIGH" + TVGuide.RESET_TEXT);
+				System.out.println();
+
+				for (Programme programme : showsAverageAudienceLowToHigh) {
+					programme.displayAll();
+				}
+				break;
+			case 0:
+				choice = 0;
+				System.out.println("See you next time!");
+				break;
+			default:
+				System.err.println("Invalid choice. Please try again...");
 			}
 
 		} while (choice != 0);
