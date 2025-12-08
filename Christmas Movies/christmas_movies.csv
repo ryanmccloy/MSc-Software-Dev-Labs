@@ -1,0 +1,41 @@
+MovieId,Title,Year,Rating,Genre,FamilyFriendly
+101,Home Alone,1990,PG,Comedy,TRUE
+102,Home Alone 2: Lost in New York,1992,PG,Comedy,TRUE
+103,Elf,2003,PG,Comedy,TRUE
+104,The Santa Clause,1994,PG,Family,TRUE
+105,The Polar Express,2004,G,Animation,TRUE
+106,How the Grinch Stole Christmas,2000,PG,Fantasy,TRUE
+107,The Grinch,2018,PG,Animation,TRUE
+108,Love Actually,2003,15,Romance,FALSE
+109,It's a Wonderful Life,1946,U,Drama,TRUE
+110,The Muppet Christmas Carol,1992,U,Family,TRUE
+111,Miracle on 34th Street,1994,PG,Drama,TRUE
+112,Miracle on 34th Street,1947,U,Drama,TRUE
+113,Arthur Christmas,2011,U,Animation,TRUE
+114,The Nightmare Before Christmas,1993,PG,Animation,TRUE
+115,National Lampoon's Christmas Vacation,1989,PG-13,Comedy,FALSE
+116,Scrooged,1988,PG-13,Comedy,FALSE
+117,Klaus,2019,PG,Animation,TRUE
+118,Jingle All the Way,1996,PG,Comedy,TRUE
+119,A Christmas Story,1983,PG,Comedy,TRUE
+120,Deck the Halls,2006,PG,Comedy,TRUE
+121,The Holiday,2006,12,Romance,FALSE
+122,Four Christmases,2008,12,Comedy,FALSE
+123,The Christmas Chronicles,2018,PG,Family,TRUE
+124,The Christmas Chronicles 2,2020,PG,Family,TRUE
+125,Noelle,2019,PG,Family,TRUE
+126,Last Christmas,2019,12,Romance,FALSE
+127,A Boy Called Christmas,2021,PG,Family,TRUE
+128,Christmas with the Kranks,2004,PG,Comedy,TRUE
+129,Fred Claus,2007,PG,Comedy,TRUE
+130,The Man Who Invented Christmas,2017,PG,Drama,TRUE
+131,A Christmas Carol,2009,PG,Animation,TRUE
+132,Holiday Inn,1942,U,Musical,TRUE
+133,White Christmas,1954,U,Musical,TRUE
+134,The Snowman,1982,U,Animation,TRUE
+135,Joyeux Noël,2005,12,War,FALSE
+136,Prancer,1989,G,Family,TRUE
+137,The Bishop's Wife,1947,U,Drama,TRUE
+138,While You Were Sleeping,1995,PG,Romance,TRUE
+139,The Santa Clause 2,2002,G,Family,TRUE
+140,The Santa Clause 3: The Escape Clause,2006,G,Family,TRUE
