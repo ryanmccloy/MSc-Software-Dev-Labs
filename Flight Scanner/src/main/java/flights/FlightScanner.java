@@ -40,6 +40,9 @@ public class FlightScanner {
 	 */
 	public static void main(String[] args) {
 
+		Thread t = new Thread();
+		boolean live = true;
+
 		System.out.println("WHAT FLIGHTS ARE OVERHEAD?");
 		System.out.println("--------------------------");
 		System.out.println();
@@ -48,31 +51,42 @@ public class FlightScanner {
 			// get lat and long from config file
 			getLatAndLong();
 			delayThread(2000);
-			
-			// start new Thread for Empty Sky Message whilst initially searching for flights
-			Thread t = new Thread(new EmptySkyThread());
-			t.start();
-			
 
-			// get the flight data from the OpenSky API call
-			JsonNode flightData = OpenSkyClient.getLiveFlights(coordinates.get("latitude"),
-					coordinates.get("longitude"));
 
-			// configure the JsonNode response
-			List<String> parsedFlightData = configureFlightDataResponse(flightData);
-			
-			if (parsedFlightData != null) {
-				t.interrupt();
-				System.out.println(parsedFlightData.toString());
-			} else {
-				// start new Thread if no flights overhead
-				t = new Thread(new EmptySkyThread());
-				t.start();
+			while (live) {
+				// get the flight data from the OpenSky API call
+				JsonNode flightData = OpenSkyClient.getLiveFlights(coordinates.get("latitude"),
+						coordinates.get("longitude"));
+
+				// configure the JsonNode response
+				List<String> parsedFlightData = configureFlightDataResponse(flightData);
+
+				if (parsedFlightData != null && !parsedFlightData.isEmpty()) {
+					if (t.isAlive()) {
+						t.interrupt();
+						System.out.println();
+					}
+					
+					System.out.println(parsedFlightData.toString());
+				} else {
+					// start new Thread if no flights overhead
+					if (!t.isAlive()) {
+						t = new Thread(new EmptySkyThread());
+						t.setDaemon(true);
+						t.start();
+					}
+
+				}
+				
+				Thread.sleep(60000);
+
 			}
-		
 
 		} catch (Exception e) {
 			System.err.println("Sorry there has been a problem: " + e.getMessage());
+			if (t.isAlive()) {
+				t.interrupt();
+			}
 			e.printStackTrace();
 		}
 

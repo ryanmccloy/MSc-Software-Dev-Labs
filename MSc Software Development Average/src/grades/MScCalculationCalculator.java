@@ -40,7 +40,7 @@ public class MScCalculationCalculator {
 		int[] programmingP1 = { 9, 10 };
 		int[] programmingP2 = { 10, 10 };
 		int[] programmingP3 = { 28, 30 };
-		int[] programmingP4 = { 35, 50 };
+		int[] programmingP4 = { 40, 50 };
 		programmingResults.put(1, programmingP1);
 		programmingResults.put(2, programmingP2);
 		programmingResults.put(3, programmingP3);
@@ -54,7 +54,7 @@ public class MScCalculationCalculator {
 		int[] computingFoundationsP1 = { 30, 30 };
 		int[] computingFoundationsP2 = { 60, 70 };
 		computingFoundationsResults.put(1, computingFoundationsP1);
-		computingFoundationsResults.put(2, computingFoundationsP2); // update once official result received
+		computingFoundationsResults.put(2, computingFoundationsP2); 
 
 		// Databases
 
